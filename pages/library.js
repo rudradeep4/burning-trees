@@ -24,7 +24,7 @@ export default function Library({ songs }) {
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <Flex>
-                <NavBar view={view} setView={setView} />
+                <NavBar view={view} setView={setView} songs={songs} />
                 {view === "Song" 
                     ?   <SongView songs={songs} />
                     :   <ArtistView songs={songs} />

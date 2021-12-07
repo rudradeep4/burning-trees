@@ -1,6 +1,6 @@
 import { extendTheme } from "@chakra-ui/react"
-import '@fontsource/rampart-one'
 import '@fontsource/dela-gothic-one'
+import '@fontsource/turret-road'
 
 export const theme = extendTheme({
     colors: {
@@ -8,7 +8,7 @@ export const theme = extendTheme({
         accent: "#F7F7F6"
     },
     fonts: {
-        heading: "Rampart One",
+        heading: "Turret Road",
         body: "Dela Gothic One"
     },
     components: {

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-children-prop */
-import React, { useState } from "react";
+import React from "react";
 import {
     Box,
     VStack,
@@ -12,14 +12,17 @@ import {
     Spacer,
     HStack,
     useRadio,
-    useRadioGroup
+    useRadioGroup,
+    Tooltip
 } from '@chakra-ui/react'
 import YouTube from "react-youtube"
 import { MdClose, MdSearch } from 'react-icons/md'
 import Logo from "./Logo"
-import { setCurrent } from "../reducers/songReducer"
+import { removeCurrent, setPlaylist } from "../reducers/songReducer"
 import { setSearchTerm } from "../reducers/searchReducer"
 import { useDispatch, useSelector } from "react-redux"
+import { ImShuffle } from 'react-icons/im'
+import _ from "lodash";
   
 
 
@@ -78,7 +81,7 @@ function RadioCard(props) {
     )
   }
 
-const NavBar = ({view, setView}) => {
+const NavBar = ({view, setView, songs}) => {
 
     const dispatch = useDispatch()
     const currentSong = useSelector(state => state.songs)
@@ -86,6 +89,18 @@ const NavBar = ({view, setView}) => {
     const opts = {
         height: '250',
         width: '250',
+    }
+
+    const generatePlaylist = () => {
+      let pd = []
+      const playlist = _.sampleSize(songs, 8)
+      _.map(playlist, song => pd = pd.concat({vId: song.vid, art: song.art, title: song.title, artist: song.artist}))
+      // dispatch(setPlaylist(pd))
+    }
+
+    const handleEnd = async (e) => {
+      await dispatch(removeCurrent())
+      dispatch(setCurrent())
     }
 
     return (
@@ -115,17 +130,23 @@ const NavBar = ({view, setView}) => {
                 </InputGroup>
 
                 <Radio view={view} setView={setView} />
+
+                <Box pt={8}>
+                <Tooltip label="Play Random Playlist">
+                  <IconButton icon={<ImShuffle color="black" />} variant="outline" p={4} borderColor="primary" _hover={{ bg: "accent" }} onClick={generatePlaylist} />
+                </Tooltip>
+                </Box>
                 
-                <VStack pt={16}>
-                    {currentSong === "No music playing"
+                <VStack pt={8} h={350} >
+                    {!currentSong[0]
                         ?   null
-                        :   <Box>
+                        :   <Box w={250}>
                                 <Flex>
                                     <Text color="primary" pb={2}>Currently playing</Text>
                                     <Spacer />
                                     <IconButton 
                                         icon={<MdClose />} 
-                                        onClick={() => dispatch(setCurrent("No music playing"))} 
+                                        onClick={handleEnd} 
                                         variant="outline" 
                                         borderColor="primary" 
                                         borderRadius="full" 
@@ -134,17 +155,17 @@ const NavBar = ({view, setView}) => {
                                     />
                                 </Flex>
                                 <YouTube 
-                                    videoId={currentSong.vId} 
+                                    videoId={currentSong[0].vId} 
                                     opts={opts} 
-                                    onReady={(e) => e.target.playVideo()} 
-                                    onEnd={() => dispatch(setCurrent("No music playing"))} 
-                                /> 
+                                    onReady={(e) => e.target.playVideo()}
+                                    onEnd={handleEnd} 
+                                />
+                                <VStack pt={2}>
+                                  <Text color="primary" fontSize="md" align="center">{currentSong[0].title}</Text>
+                                  <Text color="primary" fontSize="sm" align="center">{currentSong[0].artist}</Text>
+                                </VStack> 
                             </Box>  
                     }
-                    <VStack pt={2}>
-                        <Text color="primary" fontSize="md" align="center">{currentSong.title}</Text>
-                        <Text color="primary" fontSize="sm" align="center">{currentSong.artist}</Text>
-                    </VStack>
                 </VStack>
             </VStack>
         </Box>
