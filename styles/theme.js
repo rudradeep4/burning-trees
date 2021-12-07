@@ -5,20 +5,22 @@ import '@fontsource/dela-gothic-one'
 export const theme = extendTheme({
     colors: {
         primary: "black",
-        primaryR: "linear-gradient(to top, #c04848, #480048)",
-        navBar: "#262A2C",
-        accent: "#F7F7F6",
-        neonYellow: "#FFF01F",
-        neonGreen: "#72BF44",
-        neonOrange: "#F79548",
-        neonPink: "#FF4FA7",
-        neonRed: "#F72119"
+        accent: "#F7F7F6"
     },
     fonts: {
         heading: "Rampart One",
         body: "Dela Gothic One"
     },
     components: {
+        Text: {
+            variants: {
+                "view": {
+                    color: "accent",
+                    textAlign: "center",
+                    fontSize: "md"
+                }
+            }
+        },
         Button: {
             variants: {
                 "enter": {

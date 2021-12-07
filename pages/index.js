@@ -9,6 +9,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/dist/client/router'
 import Logo from '../components/Logo'
 import ParticleBg from '../components/ParticleBg'
+import Head from 'next/head'
 
 
 export default function Home() {
@@ -30,6 +31,10 @@ export default function Home() {
 
   return (
     <Grid minH='100vh' bgImage="bg.jpg" bgRepeat="no-repeat" bgSize="cover" display="flex" alignItems="right" justifyContent="right">
+      <Head>
+        <title>Burning Trees</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <ParticleBg />
       <VStack p={16}>
         <Logo color="accent" size="5xl" />

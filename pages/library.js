@@ -9,6 +9,7 @@ import NavBar from '../components/NavBar'
 import { useState } from 'react'
 import SongView from '../components/SongView'
 import ArtistView from '../components/ArtistView'
+import Head from 'next/head'
 
 const MotionGrid = motion(Grid)
 
@@ -18,6 +19,10 @@ export default function Library({ songs }) {
 
     return (
         <MotionGrid minH="100vh" bg="black">
+            <Head>
+                <title>Burning Trees - Library</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
             <Flex>
                 <NavBar view={view} setView={setView} />
                 {view === "Song" 
