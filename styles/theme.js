@@ -42,6 +42,29 @@ export const theme = extendTheme({
                     _focus: { borderColor:"primary" }
                 }
             }
+        },
+        Input: {
+            variants: {
+                "outline": {
+                    field: {
+                        bg: "none",
+                        borderColor: "primary",
+                        textColor: "primary",
+                        fontSize: "xs",
+                        _placeholder: { color: "#000000", opacity: 1 },
+                        _hover: { borderColor: "primary" }
+                    }
+                }
+            }
+        },
+        Button: {
+            variants: {
+                "outline": {
+                    borderColor: "primary",
+                    borderRadius: "full",
+                    color: "primary" 
+                }
+            }
         }
     }
 })
