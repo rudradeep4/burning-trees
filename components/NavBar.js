@@ -13,14 +13,12 @@ import {
   HStack,
   useRadio,
   useRadioGroup,
-  Tooltip,
-  FormControl,
-  FormLabel,
-  Switch,
-  Center
+  Button,
+  ButtonGroup
 } from '@chakra-ui/react'
 import YouTube from "react-youtube"
-import { MdClose, MdSearch } from 'react-icons/md'
+import { MdClose, MdSearch, MdFastForward } from 'react-icons/md'
+import { ImShuffle } from 'react-icons/im'
 import Logo from "./Logo"
 import { removeCurrent, setCurrent } from "../reducers/songReducer"
 import { setSearchTerm } from "../reducers/searchReducer"
@@ -107,12 +105,17 @@ const NavBar = ({view, setView, songs}) => {
     generateRandomSong()
   }
 
+  const handleClick = () => {
+    setIsChecked(!isChecked)
+    generateRandomSong()
+  }
+
     return (
-        <Box w={500} display="flex" alignItems="center" justifyContent="center" bg="accent">
-          <VStack>
+        <Box w={500} bg="accent">
+          <VStack pt={8}>
             <Logo color="primary" size="4xl" />
 
-            <InputGroup px={8} pt={4} pb={8}>
+            <InputGroup px={8} pt={4} pb={12}>
                 <InputLeftAddon 
                     bg="none"
                     borderColor="primary"
@@ -129,17 +132,22 @@ const NavBar = ({view, setView, songs}) => {
 
             <Radio view={view} setView={setView} />
 
-            <Tooltip label="Pick a song and we'll keep the music going non-stop" fontSize="xs">
-              <Box display="flex" alignItems="center" justifyContent="center">
-              <FormControl pt={8}>
-                <FormLabel htmlFor='infinity-play' mb='0'>
-                  Infinity Play
-                </FormLabel>
-                <Center pt={2}><Switch id='infinity-play' onChange={(e) => setIsChecked(!isChecked)} colorScheme="teal" size="lg" boxShadow="none" /></Center>
-              </FormControl>
-              </Box>
-            </Tooltip>
-                
+            <Box pt={12}>
+              <Button 
+                leftIcon={<ImShuffle color="green" />} 
+                onClick={handleClick} 
+                variant="outline"
+                borderRadius="md"
+                size="md"
+                bg="primary" 
+                textColor="accent" 
+                fontWeight="regular" 
+                fontSize="xs"
+                _hover={{ bg: "accent", textColor: "primary" }}
+              >
+                Play Random Playlist
+              </Button>
+            </Box>
 
             <VStack pt={8} h={350} >
               {!currentSong[0]
@@ -148,14 +156,23 @@ const NavBar = ({view, setView, songs}) => {
                       <Flex>
                         <Text color="primary" pb={2}>Currently playing</Text>
                         <Spacer />
-                        <IconButton 
-                          icon={<MdClose />} 
-                          variant="outline" 
-                          size="xs" 
-                          onClick={isChecked ? handleEnd : () => dispatch(removeCurrent())} 
-                        />
+                        <ButtonGroup>
+                          <IconButton 
+                            icon={<MdFastForward />} 
+                            variant="outline" 
+                            size="xs" 
+                            onClick={handleEnd} 
+                          />
+                          <IconButton 
+                            icon={<MdClose />} 
+                            variant="outline" 
+                            size="xs" 
+                            onClick={() => dispatch(removeCurrent())} 
+                          />
+                        </ButtonGroup>
                       </Flex>
                       <YouTube 
+                          id="current"
                           videoId={currentSong[0].vId} 
                           opts={opts} 
                           onReady={(e) => e.target.playVideo()}

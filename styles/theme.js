@@ -61,7 +61,7 @@ export const theme = extendTheme({
             variants: {
                 "outline": {
                     borderColor: "primary",
-                    borderRadius: "full",
+                    borderRadius: "md",
                     color: "primary" 
                 }
             }
