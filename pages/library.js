@@ -1,36 +1,36 @@
 import {
-    Grid,
+    Box,
     Flex
 } from '@chakra-ui/react'
 import { MongoClient } from "mongodb"
 var _ = require('lodash')
-import { motion } from 'framer-motion'
-import NavBar from '../components/NavBar'
 import { useState } from 'react'
 import SongView from '../components/SongView'
 import ArtistView from '../components/ArtistView'
 import Head from 'next/head'
+import NavBar from '../components/NavBar'
 
-const MotionGrid = motion(Grid)
+
 
 export default function Library({ songs }) {
 
     const [view, setView] = useState('Song')
 
     return (
-        <MotionGrid minH="100vh" bg="black">
+        <Box>
             <Head>
                 <title>Burning Trees - Library</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
-            <Flex>
+
+            <Flex bg="primary">
                 <NavBar view={view} setView={setView} songs={songs} />
                 {view === "Song" 
                     ?   <SongView songs={songs} />
                     :   <ArtistView songs={songs} />
                 }
             </Flex>
-        </MotionGrid>
+        </Box>
     )
 }
 

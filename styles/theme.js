@@ -1,6 +1,6 @@
 import { extendTheme } from "@chakra-ui/react"
 import '@fontsource/dela-gothic-one'
-import '@fontsource/turret-road'
+import '@fontsource/kelly-slab'
 
 export const theme = extendTheme({
     colors: {
@@ -8,7 +8,7 @@ export const theme = extendTheme({
         accent: "#F7F7F6"
     },
     fonts: {
-        heading: "Turret Road",
+        heading: "Kelly Slab",
         body: "Dela Gothic One"
     },
     components: {
@@ -48,11 +48,11 @@ export const theme = extendTheme({
                 "outline": {
                     field: {
                         bg: "none",
-                        borderColor: "primary",
-                        textColor: "primary",
+                        borderColor: "accent",
+                        textColor: "accent",
                         fontSize: "xs",
-                        _placeholder: { color: "#000000", opacity: 1 },
-                        _hover: { borderColor: "primary" }
+                        _placeholder: { color: "#FFFFFF", opacity: 1 },
+                        _hover: { borderColor: "accent" }
                     }
                 }
             }
@@ -60,9 +60,21 @@ export const theme = extendTheme({
         Button: {
             variants: {
                 "outline": {
-                    borderColor: "primary",
+                    borderColor: "accent",
                     borderRadius: "md",
-                    color: "primary" 
+                    color: "accent",
+                    _hover: {bg: "primary", color: "accent"}
+                },
+                "playlist": {
+                    borderRadius: "md",
+                    borderColor: "accent",
+                    borderWidth: "thin",
+                    size: "md",
+                    bg: "primary",
+                    textColor: "accent",
+                    fontWeight: "regular", 
+                    fontSize: "xs",
+                    _hover: { bg: "accent", textColor: "primary" }
                 }
             }
         }

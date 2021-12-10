@@ -24,18 +24,18 @@ const Song = ({ vId, art, title, artist }) => {
 
     return (
         <MotionBox 
-            w={200} 
-            h={350} 
-            mx={4}
+            w={[100, 200]} 
+            h={[175, 350]} 
+            mx={[2, 4]}
             onClick={handleClick}
             style={{ cursor: "pointer" }} 
             rounded="lg"
             whileHover={{ scale: 1.1 }}
         >
-            <Image src={art} w={200} h={200} rounded="lg" alt="album art" />
-            <VStack pt={8}>
-                <Text variant="view">{title}</Text>
-                <Text variant="view" fontSize="sm">{artist}</Text>
+            <Image src={art} w={[100, 200]} h={[100, 200]} rounded="lg" alt="album art" />
+            <VStack pt={[4, 8]}>
+                <Text variant="view" fontSize={["10px", "md"]}>{title}</Text>
+                <Text variant="view" fontSize={["10px", "sm"]}>{artist}</Text>
             </VStack>
         </MotionBox>
     )

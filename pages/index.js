@@ -36,14 +36,14 @@ export default function Home() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <ParticleBg />
-      <VStack p={16}>
-        <Logo color="accent" size="5xl" />
-        <HStack spacing={4} >
-          <Text color="accent" fontSize="xl">MUSIC TO</Text>
+      <VStack p={{ base: '4', md: '8', lg: '16' }}>
+        <Logo color="accent" size={{ base: 'xl', md: '3xl', lg: '5xl' }} />
+        <HStack spacing={{ base: '2', md: '4', lg: '4' }} >
+          <Text color="accent" fontSize={{ base: 'xs', md: 'md', lg: 'xl' }}>MUSIC TO</Text>
           <span>
             <Kbd variant="normal">SPACE</Kbd>
           </span>
-          <Text color="accent" fontSize="2xl">OUT TO</Text>
+          <Text color="accent" fontSize={{ base: 'xs', md: 'md', lg: 'xl' }}>OUT TO</Text>
         </HStack>
       </VStack>
     </Grid>
