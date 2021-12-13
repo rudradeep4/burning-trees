@@ -72,7 +72,7 @@ const NavBar = ({view, setView, songs}) => {
         </Button>
       </Box>
 
-      <VStack pt={4} w={250} h={350}>
+      <VStack pt={8} w={250} h={350}>
         {!currentSong[0]
           ?   null
           :   <Box w={250}>
