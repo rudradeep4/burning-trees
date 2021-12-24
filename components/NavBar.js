@@ -54,7 +54,6 @@ const NavBar = ({view, setView, songs}) => {
   return (
     <VStack p={8}>
       <HStack spacing={0}>
-        <GiMusicalScore color="white" size="32px" />
         <Logo color="accent" fontSize="4xl" />
       </HStack>
 
