@@ -3,9 +3,10 @@ import {
   VStack,
   HStack,
   Text,
+  Button,
   Kbd
 } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/dist/client/router'
 import Logo from '../components/Logo'
 import ParticleBg from '../components/ParticleBg'
@@ -15,6 +16,13 @@ import Head from 'next/head'
 export default function Home() {
 
   const router = useRouter()
+  const [wait, setWait] = useState(false)
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    router.push('/library')
+    setWait(!wait)
+  }
 
   useEffect(() => {
     const handleEnter = (event) => {
@@ -38,13 +46,7 @@ export default function Home() {
       <ParticleBg />
       <VStack p={{ base: '4', md: '8', lg: '16' }}>
         <Logo color="accent" size={{ base: 'xl', md: '3xl', lg: '5xl' }} />
-        <HStack spacing={{ base: '2', md: '4', lg: '4' }} >
-          <Text color="accent" fontSize={{ base: 'xs', md: 'md', lg: 'xl' }}>MUSIC TO</Text>
-          <span>
-            <Kbd variant="normal">SPACE</Kbd>
-          </span>
-          <Text color="accent" fontSize={{ base: 'xs', md: 'md', lg: 'xl' }}>OUT TO</Text>
-        </HStack>
+        <Button isLoading={wait} onClick={handleClick}>ENTER</Button>
       </VStack>
     </Grid>
   )
