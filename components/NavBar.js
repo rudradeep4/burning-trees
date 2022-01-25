@@ -8,8 +8,7 @@ import {
   Flex,
   Spacer,
   Button,
-  ButtonGroup,
-  HStack
+  ButtonGroup
 } from '@chakra-ui/react'
 import YouTube from "react-youtube"
 import { MdClose, MdFastForward } from 'react-icons/md'
@@ -20,7 +19,6 @@ import _ from "lodash"
 import RadioButtons from "./RadioButtons"
 import Search from "./Search"
 import Logo from "./Logo"
-import { GiMusicalScore } from 'react-icons/gi'
   
 
 const NavBar = ({view, setView, songs}) => {
@@ -52,10 +50,8 @@ const NavBar = ({view, setView, songs}) => {
   }
 
   return (
-    <VStack p={8}>
-      <HStack spacing={0}>
-        <Logo color="accent" fontSize="4xl" />
-      </HStack>
+    <VStack p={8} borderRightWidth='thin' borderRightColor='white'>
+      <Logo color="accent" fontSize="4xl" />
 
       <Search view={view} />
 

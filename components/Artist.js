@@ -2,7 +2,9 @@ import React from "react"
 import {
     Text,
     Box,
-    Heading
+    Heading,
+    HStack,
+    IconButton
 } from '@chakra-ui/react'
 import 'focus-visible'
 import { motion } from "framer-motion"
